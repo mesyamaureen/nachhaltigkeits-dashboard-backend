@@ -5,7 +5,7 @@
 Bevor der Entwickler mit der zugewiesenen Aufgabe beginnt, lesen Sie bitte sorgfältig, wie man mit Git arbeitet, [hier.](https://gitlab.rz.htw-berlin.de/brajko/nachhaltigkeits-dashboard/-/wikis/Wie-richte-ich-das-GitLab-Repo-in-meinem-lokalen-Rechner-ein%3F)
 
 ## Name
-Nachhaltigkeit-Dashboard
+Backend für die Anwendung Nachhaltigkeit-Dashboard. Das Frontend dafür findet man [hier.](https://gitlab.rz.htw-berlin.de/Mesya.Jeynie/nachhaltigkeits-dashboard-frontend)
 
 ## Description
 Dashboard zum Messen der Nachhaltigkeit eines Produkts während des ganzen Softwareentwicklungsprozesses. Dieses Repository ist das Backend-Repo für die Anwendung.
