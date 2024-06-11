@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/nachhaltigkeits-dashboard.iml" filepath="$PROJECT_DIR$/.idea/nachhaltigkeits-dashboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nachhaltigkeits-dashboard.main.iml" filepath="$PROJECT_DIR$/.idea/modules/nachhaltigkeits-dashboard.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/nachhaltigkeits-dashboard.test.iml" filepath="$PROJECT_DIR$/.idea/modules/nachhaltigkeits-dashboard.test.iml" />
     </modules>
   </component>
 </project>
