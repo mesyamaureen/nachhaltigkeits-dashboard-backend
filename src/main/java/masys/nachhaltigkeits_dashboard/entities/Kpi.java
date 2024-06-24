@@ -11,7 +11,7 @@ public class Kpi {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
+    private int co2;
 
     public Long getId() {
         return id;
@@ -29,11 +29,11 @@ public class Kpi {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public int getco2() {
+        return co2;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setco2(int co2) {
+        this.co2 = co2;
     }
 }

@@ -23,23 +23,22 @@ public class KpiController {
         return kpiRepository.findAll();
     }
 
-    // Kennzahl: Ressourcen
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/ressourcen")
-    public String getRessourcen(){ return "Ressourcen"; }
+    @GetMapping("/{kpiId}")
+    public Kpi getKpi(@PathVariable Long kpiId){
+        return kpiRepository.findById(kpiId).orElseThrow();
+    }
 
-    // Kennzahl: CI/CD
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/pipeline")
-    public String getPipeline(){ return "Pipeline"; }
+    @PutMapping("/{kpiId}")
+    public Kpi updateKpi(@PathVariable Long kpiId, @RequestBody Kpi kpiDetails){
+        Kpi kpi = kpiRepository.findById(kpiId).orElseThrow();
+        kpi.setName(kpiDetails.getName());
+        kpi.setco2(kpiDetails.getco2());
+        return kpiRepository.save(kpi);
+    }
 
-    // Kennzahl: Code
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/code")
-    public String getCode(){ return "Code"; }
-
-    // Kennzahl: Büro
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/organisatorisch")
-    public String getOrganisatorisch(){ return "Organisatorisch"; }
+    @DeleteMapping("/{kpiId}")
+    public void deleteKpi(@PathVariable Long kpiId){
+        Kpi kpi = kpiRepository.findById(kpiId).orElseThrow();
+        kpiRepository.delete(kpi);
+    }
 }

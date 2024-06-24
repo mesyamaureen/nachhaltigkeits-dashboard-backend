@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/dashboards")
@@ -24,7 +25,7 @@ public class DashboardController {
     private BenutzerRepository benutzerRepository;
 
     @PostMapping
-    public Dashboard createDashboard(@RequestBody Dashboard dashboard , Principal principal) {
+    public Dashboard createDashboard(@RequestBody Dashboard dashboard, Principal principal) {
         dashboard.setBenutzer(benutzerRepository.findByUsername(principal.getName()));
         return dashboardRepository.save(dashboard);
     }
@@ -37,10 +38,20 @@ public class DashboardController {
         return dashboardRepository.save(dashboard);
     }
 
-    @Autowired
+    @DeleteMapping("/{dashboardID}/kpis/{kpiId}")
+    public void removeKpiFromDashboard(@PathVariable Long dashboardID, @PathVariable Long kpiId) {
+        Dashboard dashboard = dashboardRepository.findById(dashboardID).orElseThrow();
+        dashboard.getKpis().removeIf(kpi -> kpi.getId().equals(kpiId));
+        dashboardRepository.save(dashboard);
+    }
 
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/")
-    public String index(){ return "Dashboard"; }
+    @GetMapping("/{dashboardID}")
+    public Dashboard getDashboard(@PathVariable Long dashboardID) {
+        return dashboardRepository.findById(dashboardID).orElseThrow();
+    }
 
+    @GetMapping
+    public List<Dashboard> getAllDashboards() {
+        return dashboardRepository.findAll();
+    }
 }

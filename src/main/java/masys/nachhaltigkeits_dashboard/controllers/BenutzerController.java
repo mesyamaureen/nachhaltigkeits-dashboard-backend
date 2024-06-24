@@ -41,7 +41,6 @@ public class BenutzerController {
 
     @DeleteMapping("{id}/kpis/{kpiId}")
     public void removeKpiFromBenutzer(@PathVariable Long id, @PathVariable Long kpiId) {
-        Benutzer benutzer = benutzerRepository.findById(id).orElseThrow();
         BenutzerKpi benutzerKpi = benutzerKpiRepository.findByBenutzerId(id)
                 .stream()
                 .filter(bk -> bk.getKpi().getId().equals(kpiId))
@@ -52,8 +51,7 @@ public class BenutzerController {
 
     @GetMapping("{id}/kpis")
     public List<Kpi> getBenutzerKpis(@PathVariable Long id) {
-        Benutzer benutzer = benutzerRepository.findById(id).orElseThrow();
-        List<BenutzerKpi> benutzerKpis = benutzerKpiRepository.findByBenutzerId(benutzer.getId());
+        List<BenutzerKpi> benutzerKpis = benutzerKpiRepository.findByBenutzerId(id);
         return benutzerKpis.stream().map(BenutzerKpi::getKpi).toList();
     }
 }
