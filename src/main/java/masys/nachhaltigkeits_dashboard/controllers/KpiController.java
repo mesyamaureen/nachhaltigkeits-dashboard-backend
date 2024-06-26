@@ -28,6 +28,8 @@ public class KpiController {
         return kpiRepository.findById(kpiId).orElseThrow();
     }
 
+
+/**
     @PutMapping("/{kpiId}")
     public Kpi updateKpi(@PathVariable Long kpiId, @RequestBody Kpi kpiDetails){
         Kpi kpi = kpiRepository.findById(kpiId).orElseThrow();
@@ -41,4 +43,5 @@ public class KpiController {
         Kpi kpi = kpiRepository.findById(kpiId).orElseThrow();
         kpiRepository.delete(kpi);
     }
+    */
 }

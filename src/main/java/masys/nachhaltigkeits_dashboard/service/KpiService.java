@@ -13,7 +13,13 @@ public class KpiService {
     @Autowired
     private KpiRepository kpiRepository;
 
-    public List<Kpi> getAllKennzahlen() {
+    // Methode zum Abrufen aller KPIs
+    public List<Kpi> getAllKpis() {
         return kpiRepository.findAll();
+    }
+
+    // Methode zum Abrufen eines einzelnen KPI nach ID
+    public Kpi getKpiById(Long id) {
+        return kpiRepository.findById(id).orElse(null);
     }
 }

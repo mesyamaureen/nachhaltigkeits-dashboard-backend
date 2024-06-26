@@ -30,7 +30,7 @@ public class DashboardController {
         return dashboardRepository.save(dashboard);
     }
 
-    @PostMapping("/{dashboardID}/kpis")
+    @PostMapping("kpi/{dashboardID}")
     public Dashboard addKpiToDashboard(@PathVariable Long dashboardID, @RequestBody Long kpiId) {
         Dashboard dashboard = dashboardRepository.findById(dashboardID).orElseThrow();
         Kpi kpi = kpiRepository.findById(kpiId).orElseThrow();
@@ -38,7 +38,7 @@ public class DashboardController {
         return dashboardRepository.save(dashboard);
     }
 
-    @DeleteMapping("/{dashboardID}/kpis/{kpiId}")
+    @DeleteMapping("kpi/{dashboardID}")
     public void removeKpiFromDashboard(@PathVariable Long dashboardID, @PathVariable Long kpiId) {
         Dashboard dashboard = dashboardRepository.findById(dashboardID).orElseThrow();
         dashboard.getKpis().removeIf(kpi -> kpi.getId().equals(kpiId));
