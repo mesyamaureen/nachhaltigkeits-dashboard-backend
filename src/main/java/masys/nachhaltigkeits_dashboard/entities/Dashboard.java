@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Dashboard {
@@ -13,11 +15,15 @@ public class Dashboard {
     private Long id;
     private String name;
 
+    @ManyToMany
+    @JoinTable(
+            name = "dashboard_kpi",
+            joinColumns = @JoinColumn(name = "dashboard_id"),
+            inverseJoinColumns = @JoinColumn(name = "kpi_id"))
+    private Set<Kpi> kpis = new HashSet<>();
+
     @ManyToOne
     private Benutzer benutzer;
-
-    @ManyToMany
-    private List<Kpi> kpis;
 
     public Long getId() {
         return id;
@@ -44,10 +50,10 @@ public class Dashboard {
     }
 
     public List<Kpi> getKpis() {
-        return kpis;
+        return (List<Kpi>) kpis;
     }
 
     public void setKpis(List<Kpi> kpis) {
-        this.kpis = kpis;
+        this.kpis = (Set<Kpi>) kpis;
     }
 }
