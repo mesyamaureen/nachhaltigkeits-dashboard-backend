@@ -64,3 +64,6 @@ build
 *.mv.db
 *.trace.db
 HELP.md
+
+#Node
+node_modules
