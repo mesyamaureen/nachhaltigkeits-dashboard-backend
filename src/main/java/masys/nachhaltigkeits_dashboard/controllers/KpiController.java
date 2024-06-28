@@ -1,31 +1,47 @@
 package masys.nachhaltigkeits_dashboard.controllers;
 
+import masys.nachhaltigkeits_dashboard.entities.Kpi;
+import masys.nachhaltigkeits_dashboard.repositories.KpiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("api/kpis")
 public class KpiController {
     @Autowired
+    private KpiRepository kpiRepository;
 
-    // Kennzahl: Ressourcen
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/ressourcen")
-    public String getRessourcen(){ return "Ressourcen"; }
+    @PostMapping
+    public Kpi createKpi(@RequestBody Kpi kpi){
+        return kpiRepository.save(kpi);
+    }
 
-    // Kennzahl: CI/CD
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/pipeline")
-    public String getPipeline(){ return "Pipeline"; }
+    @GetMapping
+    public List<Kpi> getAllKpis(){
+        return kpiRepository.findAll();
+    }
 
-    // Kennzahl: Code
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/code")
-    public String getCode(){ return "Code"; }
+    @GetMapping("/{kpiId}")
+    public Kpi getKpi(@PathVariable Long kpiId){
+        return kpiRepository.findById(kpiId).orElseThrow();
+    }
 
-    // Kennzahl: Büro
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/organisatorisch")
-    public String getOrganisatorisch(){ return "Organisatorisch"; }
+
+/**
+    @PutMapping("/{kpiId}")
+    public Kpi updateKpi(@PathVariable Long kpiId, @RequestBody Kpi kpiDetails){
+        Kpi kpi = kpiRepository.findById(kpiId).orElseThrow();
+        kpi.setName(kpiDetails.getName());
+        kpi.setco2(kpiDetails.getco2());
+        return kpiRepository.save(kpi);
+    }
+
+    @DeleteMapping("/{kpiId}")
+    public void deleteKpi(@PathVariable Long kpiId){
+        Kpi kpi = kpiRepository.findById(kpiId).orElseThrow();
+        kpiRepository.delete(kpi);
+    }
+    */
 }
