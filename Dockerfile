@@ -1,11 +1,11 @@
 # Use an official Gradle image to build the application
-FROM gradle:7.5.0-jdk11 AS build
+FROM gradle:8.7-jdk11 AS build
 
 # Set the working directory
 WORKDIR /home/gradle/project
 
 # Copy only the necessary files to cache dependencies
-COPY build.gradle.kts settings.gradle.kts /home/gradle/project/
+COPY build.gradle settings.gradle /home/gradle/project/
 
 # Download dependencies
 RUN gradle build -x test --no-daemon || return 0
@@ -30,3 +30,4 @@ EXPOSE 8080
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
