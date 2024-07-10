@@ -13,7 +13,7 @@ public class KpiController {
     @Autowired
     private KpiRepository kpiRepository;
 
-    @PostMapping
+    @PostMapping("/kpi")
     public Kpi createKpi(@RequestBody Kpi kpi){
         return kpiRepository.save(kpi);
     }
