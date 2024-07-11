@@ -16,16 +16,19 @@ public class OrganisatorischController {
     private OrganisatorischRepository organisatorischRepository;
 
     @PostMapping("/neu-metrik-organisatorisch")
+    @CrossOrigin(origins = "https://nachhaltigkeits-dashboard-frontend.onrender.com")
     public Organisatorisch createOrganisatorisch(@RequestBody Organisatorisch organisatorisch){
         return organisatorischRepository.save(organisatorisch);
     }
 
     @GetMapping("/organisatorisch")
+    @CrossOrigin(origins = "https://nachhaltigkeits-dashboard-frontend.onrender.com")
     public List<Organisatorisch> getAllOrganisatorische(){
         return organisatorischRepository.findAll();
     }
 
     @GetMapping("/organisatorisch/{organisatorisch-metrik-id}")
+    @CrossOrigin(origins = "https://nachhaltigkeits-dashboard-frontend.onrender.com")
     public Organisatorisch getOrganisatorisch(@PathVariable Long organisatorischMetrikId){
         return organisatorischRepository.findById(organisatorischMetrikId).orElseThrow();
     }
