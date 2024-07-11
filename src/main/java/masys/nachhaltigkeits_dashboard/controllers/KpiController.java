@@ -9,22 +9,25 @@ import java.util.List;
 
 @RestController
 // @RequestMapping("/kpis")
-@CrossOrigin("http://localhost:5173")
+
 public class KpiController {
     @Autowired
     private KpiRepository kpiRepository;
 
     @PostMapping("/kpi")
+    @CrossOrigin(origins = "https://nachhaltigkeits-dashboard-frontend.onrender.com")
     public Kpi createKpi(@RequestBody Kpi kpi){
         return kpiRepository.save(kpi);
     }
 
     @GetMapping("/kpis")
+    @CrossOrigin(origins = "https://nachhaltigkeits-dashboard-frontend.onrender.com")
     public List<Kpi> getAllKpis(){
         return kpiRepository.findAll();
     }
 
     @GetMapping("/kpis/{kpiId}")
+    @CrossOrigin(origins = "https://nachhaltigkeits-dashboard-frontend.onrender.com")
     public Kpi getKpi(@PathVariable Long kpiId){
         return kpiRepository.findById(kpiId).orElseThrow();
     }
