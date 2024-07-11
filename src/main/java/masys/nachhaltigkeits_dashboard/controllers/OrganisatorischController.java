@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("organisatorisch")
+// @RequestMapping("organisatorisch")
 public class OrganisatorischController {
     @Autowired
     private OrganisatorischRepository organisatorischRepository;
@@ -20,12 +20,12 @@ public class OrganisatorischController {
         return organisatorischRepository.save(organisatorisch);
     }
 
-    @GetMapping
+    @GetMapping("/organisatorisch")
     public List<Organisatorisch> getAllOrganisatorische(){
         return organisatorischRepository.findAll();
     }
 
-    @GetMapping("/{organisatorisch-metrik-id}")
+    @GetMapping("/organisatorisch/{organisatorisch-metrik-id}")
     public Organisatorisch getOrganisatorisch(@PathVariable Long organisatorischMetrikId){
         return organisatorischRepository.findById(organisatorischMetrikId).orElseThrow();
     }

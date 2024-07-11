@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/kpis")
+// @RequestMapping("/kpis")
+@CrossOrigin("http://localhost:5173")
 public class KpiController {
     @Autowired
     private KpiRepository kpiRepository;
@@ -18,12 +19,12 @@ public class KpiController {
         return kpiRepository.save(kpi);
     }
 
-    @GetMapping
+    @GetMapping("/kpis")
     public List<Kpi> getAllKpis(){
         return kpiRepository.findAll();
     }
 
-    @GetMapping("/{kpiId}")
+    @GetMapping("/kpis/{kpiId}")
     public Kpi getKpi(@PathVariable Long kpiId){
         return kpiRepository.findById(kpiId).orElseThrow();
     }
